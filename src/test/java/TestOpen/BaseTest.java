@@ -29,8 +29,8 @@ public class BaseTest {
         taskOne = PageFactory.initElements(driver, TaskOne.class);
     }
 
-//    @AfterEach
-//    public void finish(){
-//        driver.quit();
-//    }
+    @AfterEach
+    public void finish(){
+        driver.quit();
+    }
 }
