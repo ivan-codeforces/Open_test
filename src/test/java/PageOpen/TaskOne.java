@@ -3,12 +3,18 @@ package PageOpen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import org.openqa.selenium.interactions.Actions;
 
 public class TaskOne extends PageBase {
     public TaskOne(WebDriver driver) {
         super(driver);
+    }
+    public TaskOne(Action actions) {
+        super((WebDriver) actions);
     }
 
     public TaskOne fillInLogin(String login){
@@ -39,6 +45,11 @@ public class TaskOne extends PageBase {
 
     public TaskOne clickButtonByName(String byName){
         driver.findElement(By.linkText(byName)).click();
+        return this;
+    }
+
+    public TaskOne scrollToElementByName(String byName){
+        actions.moveToElement(driver.findElement(By.name(byName)));
         return this;
     }
 

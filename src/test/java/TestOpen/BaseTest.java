@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ public class BaseTest {
     public WebDriver driver;
     public Main main;
     public TaskOne taskOne;
+    public Actions actions;
 
     @BeforeEach
     protected void start() {
@@ -27,6 +29,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         main = PageFactory.initElements(driver, Main.class);
         taskOne = PageFactory.initElements(driver, TaskOne.class);
+        actions = new Actions(driver);
     }
 
     @AfterEach
