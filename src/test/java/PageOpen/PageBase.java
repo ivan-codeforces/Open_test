@@ -2,7 +2,6 @@ package PageOpen;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -11,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class PageBase {
     public WebDriver driver;
     public WebDriverWait wait;
-    public Actions actions = new Actions(driver);
 
     public PageBase(WebDriver driver) {
         this.driver = driver;

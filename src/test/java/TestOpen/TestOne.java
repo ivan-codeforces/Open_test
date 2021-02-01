@@ -23,11 +23,7 @@ public class TestOne extends BaseTest {
         } catch (TimeoutException ignore) {
         }
         taskOne.clickButtonByName("Судебный конвейер");
-
-//        WebElement element = driver.findElement(By.id("my-id"));
-//        Actions actions = new Actions(driver);
-//        actions.moveToElement(element);
-//        actions.perform();
-
+        taskOne.scrollToElementByName("Порядковый номер подачи");
+        taskOne.clickButtonByName("Порядковый номер подачи");
     }
 }
