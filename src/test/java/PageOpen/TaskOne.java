@@ -33,6 +33,11 @@ public class TaskOne extends PageBase {
         return this;
     }
 
+    public TaskOne findElementByName(String byName){
+        driver.findElement(By.name(byName)).isDisplayed();
+        return this;
+    }
+
     public TaskOne clickButtonByClass(String byClass){
         driver.findElement(By.tagName(byClass)).click();
         return this;

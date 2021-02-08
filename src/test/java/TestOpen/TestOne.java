@@ -2,6 +2,7 @@ package TestOpen;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +24,12 @@ public class TestOne extends BaseTest {
         } catch (TimeoutException ignore) {
         }
         taskOne.clickButtonByName("Судебный конвейер");
-        taskOne.scrollToElementByName("Порядковый номер подачи");
-        taskOne.clickButtonByName("Порядковый номер подачи");
+        taskOne.findElementByName("Номер по SIEBEL");
+//        ((JavascriptExecutor)driver).executeScript("window.scrollBy(" + 500 + ","
+//                + 0 + ");");
+        JavascriptExecutor js = ((JavascriptExecutor) driver);
+        js.executeScript("arguments[0].scrollIntoView(true);",taskOne.findElementByName("Номер по SIEBEL"));
+//        taskOne.scrollToElementByName("Порядковый номер подачи");
+//        taskOne.clickButtonByName("Порядковый номер подачи");
     }
 }
