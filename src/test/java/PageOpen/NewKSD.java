@@ -3,12 +3,16 @@ package PageOpen;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public class NewKSD extends PageBase {
     public NewKSD(WebDriver driver) {
@@ -28,7 +32,6 @@ public class NewKSD extends PageBase {
 
     public void loginButtonClick() {
         driver.findElement(By.id("s_swepi_22")).click();
-//        return this;
     }
 
     public NewKSD clickButtonByName(String byName) {
@@ -59,8 +62,6 @@ public class NewKSD extends PageBase {
     }
 
     public NewKSD wrightText(String byId, String name) {
-        driver.getWindowHandle();
-        driver.findElement(By.name(byId)).click();
         driver.findElement(By.name(byId)).sendKeys(name);
         return this;
     }
@@ -84,4 +85,18 @@ public class NewKSD extends PageBase {
         driver.findElement(By.id(byId)).sendKeys(fileName);
         return this;
     }
+
+    public NewKSD moveMouse(String id){
+        Actions actions = new Actions(driver);
+        WebElement menu = driver.findElement(By.id(id));
+        actions.moveToElement(menu).build().perform();
+        return  this;
+    }
+
+    public NewKSD chooseTypeOfContract(String id){
+        new WebDriverWait(driver, 10).until(visibilityOfElementLocated(By.id(id)));
+
+        return this;
+    }
+
 }

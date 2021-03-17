@@ -7,7 +7,6 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
@@ -21,7 +20,8 @@ public class CreateNewKSD extends BaseTest {
                 .fillInPassword("MRADKOVA")
                 .loginButtonClick();
         try {
-            wait.until(visibilityOfElementLocated(By.name("Договоры")));
+            new WebDriverWait(driver, 10).until(visibilityOfElementLocated(By.name("Договоры")));
+//            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(elementBy));
         } catch (TimeoutException ignore) {
         }
 //    Перейти в договор
@@ -32,17 +32,20 @@ public class CreateNewKSD extends BaseTest {
         Select select = new Select(driver.findElement(By.id("j_s_vctrl_div_tabScreen")));
         select.selectByVisibleText("Вложения");
 //    Выбрать файлы для загрузки и загрузить (кнопка "Новый файл")
-//        newKSD.clickButtonById("1_s_11_l_Doc_Type");
-//        Select selectTypeOfContract = new Select(driver.findElement(By.id("1_s_11_l_Doc_Type")));
-//        selectTypeOfContract.selectByVisibleText("Выписка");
+
         for (String nameOfFile :
                 newKSD.readFilesFromFolder()) {
             System.out.println(nameOfFile);
             newKSD.addNewFile("s_11_1_8_0s_SweFileName", "C:\\Users\\ivank\\Downloads\\testAvto\\src\\main\\resources\\files\\" + nameOfFile + ".txt");
+            newKSD.clickButtonById("1_s_11_l_Doc_Type");
+            newKSD.wrightText("1_Doc_Type", nameOfFile);
+//            newKSD.clickButtonById("1_s_11_l_Doc_Type");
+//            newKSD.clickButtonById("s_11_2_35_0_icon");
+//            newKSD.clickButtonById("ui-id-700");
 
-            newKSD.wrightText("1_s_11_l_Doc_Type", nameOfFile);
-//            Select selectTypeOfContract = new Select(driver.findElement(By.id("1_s_11_l_Doc_Type")));
-//            selectTypeOfContract.selectByVisibleText(nameOfFile);
+            int i = 1;
+            Select selectTypeOfContract = new Select(driver.findElement(By.id("ui-id-604")));
+            selectTypeOfContract.selectByVisibleText("Выписка");
         }
 
 
